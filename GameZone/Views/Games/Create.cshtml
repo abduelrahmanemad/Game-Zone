@@ -1,1 +1,24 @@
-﻿<p>Create Game</p>
+﻿@model CreateGameFormView
+
+@{
+    ViewData["Title"] = "Create Game";
+}
+
+<h5>
+    <i class="bi bi-plus-circle"></i>
+    Add a new game
+</h5>
+<form asp-controller="Games" >
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Name" class="form-label mt-4"></label>
+                <input type="text" class="form-control" asp-for="Name"  placeholder="Game Name">
+                <span asp-validation-for="Name" class ="text-danger"></span>
+            </div>
+        <button type="submit" class="btn btn-light text-black mt-4" >Add</button>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+</form>
