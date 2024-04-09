@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace GameZone.Migrations
 {
     /// <inheritdoc />
@@ -81,6 +83,56 @@ namespace GameZone.Migrations
                         principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Action" },
+                    { 2, "Adventure" },
+                    { 3, "RPG" },
+                    { 4, "Simulation" },
+                    { 5, "Strategy" },
+                    { 6, "Sports" },
+                    { 7, "Puzzle" },
+                    { 8, "Idle" },
+                    { 9, "Casual" },
+                    { 10, "Arcade" },
+                    { 11, "Racing" },
+                    { 12, "Horror" },
+                    { 13, "Fantasy" },
+                    { 14, "Sci-Fi" },
+                    { 15, "MMO" },
+                    { 16, "MOBA" },
+                    { 17, "Battle Royale" },
+                    { 18, "FPS" },
+                    { 19, "TPS" },
+                    { 20, "Survival" },
+                    { 21, "Open World" },
+                    { 22, "MMORPG" },
+                    { 23, "RTS" },
+                    { 24, "TBS" },
+                    { 25, "Card" },
+                    { 26, "Board" },
+                    { 27, "Trivia" },
+                    { 28, "Word" },
+                    { 29, "Music" },
+                    { 30, "Educational" },
+                    { 31, "Family" },
+                    { 32, "Casino" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Devices",
+                columns: new[] { "Id", "Icon", "Name" },
+                values: new object[,]
+                {
+                    { 1, "bi bi-pc-display", "PC" },
+                    { 2, "bi bi-playstation", "PlayStation" },
+                    { 3, "bi bi-xbox", "Xbox" },
+                    { 4, "bi bi-nintendo-switch", "Nintendo" }
                 });
 
             migrationBuilder.CreateIndex(
