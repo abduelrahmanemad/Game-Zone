@@ -43,7 +43,15 @@ namespace GameZone.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CreateGameFormView model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            // Save the game to the database
+
+
+            // Save cover image to the server
+            return RedirectToAction(nameof(Index));
         }
     }
 }
