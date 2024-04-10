@@ -11,6 +11,7 @@ namespace GameZone.ViewModels
         public string Description { get; set; } = string.Empty;
         [MaxLength(500)]
         public IFormFile Cover { get; set; } = default!;
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public List<int> SelectedDevicesIds { get; set; } = new List<int>();
 
