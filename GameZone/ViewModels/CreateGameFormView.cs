@@ -13,6 +13,7 @@ namespace GameZone.ViewModels
         public IFormFile Cover { get; set; } = default!;
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
+        [Display(Name = "Supported Devices")]
         public List<int> SelectedDevicesIds { get; set; } = new List<int>();
 
         public IEnumerable<SelectListItem> Categories { get; set; } = Enumerable.Empty<SelectListItem>();

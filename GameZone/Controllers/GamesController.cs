@@ -25,10 +25,17 @@ namespace GameZone.Controllers
             {
                 Value = c.Id.ToString(),
                 Text = c.Name
-            }).OrderBy(c=> c.Text).ToList();
+            }).OrderBy(c => c.Text).ToList();
+
+            var devices = _context.Devices.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.Name
+            }).OrderBy(d => d.Text).ToList();
             CreateGameFormView model = new()
             {
-                Categories = categories
+                Categories = categories,
+                Devices = devices,
             };
             return View(model);
         }
