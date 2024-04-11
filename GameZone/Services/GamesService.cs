@@ -22,7 +22,6 @@ namespace GameZone.Services
             var coverPath = Path.Combine(_imgsPath,coverName);
             using var stream = File.Create(coverPath);
             await game.Cover.CopyToAsync(stream);
-            stream.Dispose();
             var gameToAdd = new Game
             {
                 Name = game.Name,
