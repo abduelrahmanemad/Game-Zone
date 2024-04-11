@@ -1,4 +1,5 @@
 using GameZone.Data;
+using GameZone.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(optionsBuilder =>
 {
     optionsBuilder.UseSqlServer(connection );
 });
+
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+builder.Services.AddScoped<IDevicesService, DevicesService>();
 
 var app = builder.Build();
 
