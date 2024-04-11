@@ -11,12 +11,13 @@ namespace GameZone.Controllers
         
         private readonly ICategoriesService _categoriesService;
         private readonly IDevicesService _devicesService;
+        private readonly IGamesService _gamesService;
 
-        public GamesController(ICategoriesService categoriesService, IDevicesService devicesService)
+        public GamesController(ICategoriesService categoriesService, IDevicesService devicesService, IGamesService gamesService)
         {
-            
             _categoriesService = categoriesService;
             _devicesService = devicesService;
+            _gamesService = gamesService;
         }
         public IActionResult Index()
         {
@@ -38,7 +39,7 @@ namespace GameZone.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreateGameFormView model)
+        public async Task<IActionResult> Create(CreateGameFormView model)
         {
             if (!ModelState.IsValid)
             {
@@ -48,9 +49,8 @@ namespace GameZone.Controllers
                 return View(model);
             }
             // Save the game to the database
+            await _gamesService.AddGame(model);
 
-
-            // Save cover image to the server
             return RedirectToAction(nameof(Index));
         }
     }
