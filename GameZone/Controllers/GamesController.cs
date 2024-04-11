@@ -8,13 +8,15 @@ namespace GameZone.Controllers
 {
     public class GamesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        
         private readonly ICategoriesService _categoriesService;
+        private readonly IDevicesService _devicesService;
 
-        public GamesController(ApplicationDbContext applicationDbContext, ICategoriesService categoriesService)
+        public GamesController(ICategoriesService categoriesService, IDevicesService devicesService)
         {
-            _context = applicationDbContext;
+            
             _categoriesService = categoriesService;
+            _devicesService = devicesService;
         }
         public IActionResult Index()
         {
@@ -26,11 +28,7 @@ namespace GameZone.Controllers
         {
             var categories = _categoriesService.GetSelectList();
 
-            var devices = _context.Devices.Select(d => new SelectListItem
-            {
-                Value = d.Id.ToString(),
-                Text = d.Name
-            }).OrderBy(d => d.Text).ToList();
+            var devices =  _devicesService.GetSelectList();
             CreateGameFormView model = new()
             {
                 Categories = categories,
@@ -46,11 +44,7 @@ namespace GameZone.Controllers
             {
                 model.Categories = _categoriesService.GetSelectList();
 
-                model.Devices = _context.Devices.Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.Name
-                }).OrderBy(d => d.Text).ToList();
+                model.Devices = _devicesService.GetSelectList();
                 return View(model);
             }
             // Save the game to the database
